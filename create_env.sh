@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Check if python3 is installed
-if ! command -v python3 &> /dev/null
+if ! command -v python3.12 &> /dev/null
 then
-    echo "python3 could not be found, installing..."
+    echo "python3.12 could not be found, installing..."
     exit 1
 fi
 
 # Create a virtual environment if it doesn't exist
 if [ ! -d "venv" ]; then
     echo "Creating virtual environment..."
-    python3 -m venv venv
+    python3.12 -m venv venv
 fi
 
 # Activate the virtual environment
@@ -26,7 +26,9 @@ else
     echo "x86 architecture detected. Keeping existing jaxlib installation."
 fi
 
-# Install dependencies from requirements.txt using python3 -m pip
+python3 -m pip install -U pip wheel setuptools
+
+# Install dependencies from requirements.txt using python3.12 -m pip
 if [ -f "requirements.txt" ]; then
     echo "Installing dependencies from requirements.txt..."
     python3 -m pip install -r requirements.txt

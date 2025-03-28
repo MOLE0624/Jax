@@ -10,7 +10,7 @@ from flax import linen as nn
 # Ensure the parent directory is in sys.path for module imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from layers.preproc import PreInputLayer, PreprocOp
+from layers.nnx.preproc import PreInputLayer, PreprocOp
 
 
 class Model(nn.Module):
