@@ -55,21 +55,20 @@ if __name__ == "__main__":
 
     # Now, let's test inference using ONNX Runtime with dummy data
     # Create some dummy input data matching the expected input shape
-    input_data = np.random.rand(1, 3, 1920, 1080).astype(np.int8)  # Batch size 1, Channels 3, Height 640, Width 640
-
-
+    input_data = np.random.rand(1, 3, 1920, 1080).astype(
+        np.int8
+    )  # Batch size 1, Channels 3, Height 640, Width 640
 
     # Create ONNX Runtime session using the model in memory (not saved to a file)
     session = ort.InferenceSession(onnx_model.SerializeToString())
-    
+
     # Extract input tensor names
     input_name = session.get_inputs()[0].name
-    
+
     # Run inference with input_data
     output_data = session.run(None, {input_name: input_data})
 
     # Print the outputs
     print("Inference result:", output_data)
-
 
     # onnx.save_model(onnx_model, "model.onnx")
